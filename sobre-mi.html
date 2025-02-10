@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mí | Stiven Agudelo</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/2830/2830284.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/2830/2830284.png">
+    <link rel="icon" type="image/shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2830/2830284.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.95), rgba(0, 191, 166, 0.95));
+            padding: 150px 5% 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('pattern.png') repeat;
+            opacity: 0.1;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-section {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .journey-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #6C63FF, #00BFA6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: calc(100% - 4rem);
+            background: linear-gradient(to bottom, #6C63FF, #00BFA6);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 4rem;
+            width: 50%;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 30px;
+            padding-right: 0;
+            transform: translateX(50px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #6C63FF;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: auto;
+            left: -8px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-content h3 {
+            color: #6C63FF;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00BFA6;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem auto;
+            max-width: 800px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .client-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media screen and (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 22px;
+            }
+
+            .timeline-content {
+                max-width: 100%;
+            }
+
+            .testimonial-card {
+                margin: 1rem auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #6C63FF, #5A52E0);
+            position: relative;
+            overflow: hidden;
+            margin: 4rem auto !important;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+            border-radius: 20px;
+            max-width: 1200px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #00BFA6, #00D4B8);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #00D4B8, #00BFA6);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover i {
+            transform: translateX(5px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="logo-text">Stiven Agudelo</div>
+            </div>
+            <div class="nav-menu">
+                <a href="Inicio.html" class="nav-link">Inicio</a>
+                <a href="sobre-mi.html" class="nav-link">Sobre Mí</a>
+                <div class="nav-item-dropdown">
+                    <a href="#servicios" class="nav-link">Servicios <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="planificacion-financiera.html">Planificación Financiera Personal</a>
+                        <a href="asesoria-inversiones.html">Asesoría en Inversiones</a>
+                        <a href="gestion-patrimonio.html">Gestión de Patrimonio</a>
+                        <a href="planificacion-jubilacion.html">Planificación de Jubilación</a>
+                    </div>
+                </div>
+                <a href="#contacto" class="nav-link">Contacto</a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <h1>Transformando Futuros Financieros</h1>
+        <p>Con más de 5 años de experiencia en el sector financiero</p>
+    </section>
+
+    <section class="stats-container grid-container">
+        <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <p>Clientes Satisfechos</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">25M+</div>
+            <p>Activos Gestionados</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">92%</div>
+            <p>Tasa de Éxito</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <p>Premios y Certificaciones</p>
+        </div>
+    </section>
+
+    <section class="journey-section">
+        <div class="container">
+            <h2>Mi Trayectoria Profesional</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content" data-aos="fade-right">
+                        <h3>Formación Académica</h3>
+                        <ul>
+                            <li>Máster en Finanzas y Mercados Financieros</li>
+                            <li>Certificación CFP® (Certified Financial Planner)</li>
+                            <li>Especialización en Gestión de Patrimonios</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content" data-aos="fade-left">
+                        <h3>Experiencia Profesional</h3>
+                        <ul>
+                            <li>Asesor Senior en importantes firmas de inversión</li>
+                            <li>Desarrollo de estrategias personalizadas para más de 100 clientes</li>
+                            <li>Gestión exitosa de carteras de inversión superiores a $25M</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content" data-aos="fade-right">
+                        <h3>Logros Destacados</h3>
+                        <ul>
+                            <li>Rendimiento medio del 15% anual para carteras de clientes</li>
+                            <li>Desarrollo de estrategias innovadoras de diversificación</li>
+                            <li>Reconocimiento como "Asesor Financiero del Año 2023"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Lo Que Dicen Mis Clientes</h2>
+            <div class="flex-container">
+                <div class="testimonial-card">
+                    <p>"La asesoría de Stiven transformó completamente mi perspectiva financiera. En solo un año, mis inversiones han tenido un crecimiento excepcional."</p>
+                    <div class="client-info">
+                        <img src="client1.jpg" alt="Cliente" class="client-image">
+                        <div>
+                            <h4>Carlos Ramírez</h4>
+                            <p>Empresario</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p>"Su enfoque personalizado y su profundo conocimiento del mercado me han ayudado a alcanzar mis metas financieras antes de lo previsto."</p>
+                    <div class="client-info">
+                        <img src="client2.jpg" alt="Cliente" class="client-image">
+                        <div>
+                            <h4>Ana Martínez</h4>
+                            <p>Profesional Independiente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>¿Listo para comenzar tu plan financiero?</h2>
+        <p>Agenda una consulta gratuita y descubre cómo puedo ayudarte a alcanzar tus metas financieras.</p>
+        <a href="agendar-cita.html" class="cta-button">
+            Agendar Consulta <i class="fas fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 
